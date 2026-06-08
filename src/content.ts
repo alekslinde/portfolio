@@ -17,11 +17,10 @@ export const COPY = {
       },
       {
         num: '.03',
-        name: 'more things brewing',
-        desc: '',
-        wip: true,
-        wipLabel: 'soon',
-      },
+        name: 'Tooeasyvino',
+        desc: "Your guide to SA's best drops",
+        url: 'https://tooeasyvino.com',
+      }
     ],
     contact: { email: 'email', linkedin: 'linkedin', github: 'github' },
     footerNote: '© Aleks Linde',
@@ -44,11 +43,10 @@ export const COPY = {
       },
       {
         num: 'P03',
-        name: 'REDACTED',
-        desc: '',
-        wip: true,
-        wipLabel: 'PENDING',
-      },
+        name: 'tooeasyvino.com',
+        desc: '// type:directory  status:DEPLOYED  target:AU',
+        url: 'https://tooeasyvino.com',
+      }
     ],
     contact: { email: 'EMAIL_ENDPOINT', linkedin: 'NETWORK_GRAPH', github: 'CODE_REPO' },
     footerNote: 'LAST_UPDATED: 2026 · ENTITY: ALEKS_LINDE',
