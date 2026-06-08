@@ -19,17 +19,14 @@ import { initModeController } from './ModeController';
 
 function makeElements() {
   const el = () => document.createElement('div');
+  const projectCount = 3;
   return {
     nameEl: el(),
     tagline: el(),
     projectsLabel: el(),
-    p1num: el(),
-    proj1Name: el(),
-    proj1Desc: el(),
-    p2num: el(),
-    proj2Name: el(),
-    proj2Desc: el(),
-    proj2Wip: el(),
+    projectNums:  Array.from({ length: projectCount }, el),
+    projectNames: Array.from({ length: projectCount }, el),
+    projectDescs: Array.from({ length: projectCount }, el),
     emailLink: el(),
     liLink: el(),
     ghLink: el(),
@@ -130,8 +127,10 @@ describe('initModeController', () => {
     vi.runAllTimers();
     expect(els.tagline.textContent).toBe(COPY.robot.tagline);
     expect(els.projectsLabel.textContent).toBe(COPY.robot.projectsLabel);
-    expect(els.p1num.textContent).toBe(COPY.robot.projects[0].num);
-    expect(els.proj1Name.textContent).toBe(COPY.robot.projects[0].name);
+    expect(els.projectNums[0].textContent).toBe(COPY.robot.projects[0].num);
+    expect(els.projectNames[0].textContent).toBe(COPY.robot.projects[0].name);
+    expect(els.projectNums[2].textContent).toBe(COPY.robot.projects[2].num);
+    expect(els.projectNames[2].textContent).toBe(COPY.robot.projects[2].name);
     expect(els.footerNote.textContent).toBe(COPY.robot.footerNote);
   });
 

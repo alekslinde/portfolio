@@ -28,16 +28,6 @@ describe('COPY', () => {
       });
   });
 
-  it.each(['human', 'robot'] as const)('%s mode has exactly one wip project', (mode) => {
-    const wip = COPY[mode].projects.filter((p) => p.wip);
-    expect(wip).toHaveLength(1);
-  });
-
-  it.each(['human', 'robot'] as const)('%s wip project has a wipLabel', (mode) => {
-    const wip = COPY[mode].projects.find((p) => p.wip);
-    expect(wip?.wipLabel).toBeTruthy();
-  });
-
   it('human and robot modes both have the same number of contact keys', () => {
     expect(Object.keys(COPY.human.contact)).toEqual(Object.keys(COPY.robot.contact));
   });

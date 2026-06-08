@@ -31,7 +31,11 @@ const { label, projects } = Astro.props;
       ) : (
         <span class="project-link" style="cursor:default;">
           <span data-proj-name={i}>{p.name}</span>
-          {p.wip && <span class="project-wip" data-proj-wip={i}>{p.wipLabel ?? 'soon'}</span>}
+          {p.wip && 
+            <span class="project-wip" data-proj-wip={i}>
+              {p.wipLabel ?? 'soon'}
+            </span>
+          }
         </span>
       )}
       </li>

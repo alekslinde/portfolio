@@ -7,13 +7,9 @@ export interface ModeElements {
   nameEl: HTMLElement;
   tagline: HTMLElement;
   projectsLabel: HTMLElement;
-  p1num: HTMLElement;
-  proj1Name: HTMLElement;
-  proj1Desc: HTMLElement;
-  p2num: HTMLElement;
-  proj2Name: HTMLElement;
-  proj2Desc: HTMLElement;
-  proj2Wip: HTMLElement | null;
+  projectNums: HTMLElement[];
+  projectNames: HTMLElement[];
+  projectDescs: HTMLElement[];
   emailLink: HTMLElement;
   liLink: HTMLElement;
   ghLink: HTMLElement;
@@ -99,17 +95,16 @@ export function initModeController(
     }
 
     const c = copy[mode];
+    const projectTargets = c.projects.flatMap((p, i) => [
+      { el: els.projectNums[i], val: p.num },
+      { el: els.projectNames[i], val: p.name },
+      { el: els.projectDescs[i], val: p.desc },
+    ]);
     const targets = [
       { el: els.nameEl, val: realName },
       { el: els.tagline, val: c.tagline },
       { el: els.projectsLabel, val: c.projectsLabel },
-      { el: els.p1num, val: c.projects[0].num },
-      { el: els.proj1Name, val: c.projects[0].name },
-      { el: els.proj1Desc, val: c.projects[0].desc },
-      { el: els.p2num, val: c.projects[1].num },
-      { el: els.proj2Name, val: c.projects[1].name },
-      { el: els.proj2Desc, val: c.projects[1].desc },
-      { el: els.proj2Wip, val: c.projects[1].wipLabel ?? '' },
+      ...projectTargets,
       { el: els.emailLink, val: c.contact.email },
       { el: els.liLink, val: c.contact.linkedin },
       { el: els.ghLink, val: c.contact.github },
