@@ -44,18 +44,15 @@ const robot = COPY.robot;
   import { initModeController } from '../components/ModeController';
 
   const realName = 'Aleks Linde';
+  const projectCount = COPY.human.projects.length;
   const { toggle } = initModeController(
     {
       nameEl:        document.getElementById('name-text')!,
       tagline:       document.getElementById('tagline')!,
       projectsLabel: document.getElementById('projects-label')!,
-      p1num:         document.querySelector('[data-index="0"]') as HTMLElement,
-      proj1Name:     document.querySelector('[data-proj-name="0"]') as HTMLElement,
-      proj1Desc:     document.querySelector('[data-proj-desc="0"]') as HTMLElement,
-      p2num:         document.querySelector('[data-index="1"]') as HTMLElement,
-      proj2Name:     document.querySelector('[data-proj-name="1"]') as HTMLElement,
-      proj2Desc:     document.querySelector('[data-proj-desc="1"]') as HTMLElement,
-      proj2Wip:      document.querySelector('[data-proj-wip="1"]') as HTMLElement | null,
+      projectNums:   Array.from({ length: projectCount }, (_, i) => document.querySelector(`[data-index="${i}"]`) as HTMLElement),
+      projectNames:  Array.from({ length: projectCount }, (_, i) => document.querySelector(`[data-proj-name="${i}"]`) as HTMLElement),
+      projectDescs:  Array.from({ length: projectCount }, (_, i) => document.querySelector(`[data-proj-desc="${i}"]`) as HTMLElement),
       emailLink:     document.getElementById('email-link')!,
       liLink:        document.getElementById('li-link')!,
       ghLink:        document.getElementById('gh-link')!,
