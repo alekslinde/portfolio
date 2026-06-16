@@ -15,8 +15,8 @@ describe('COPY', () => {
     expect(typeof c.contact.github).toBe('string');
   });
 
-  it.each(['human', 'robot'] as const)('%s mode has 3 projects', (mode) => {
-    expect(COPY[mode].projects).toHaveLength(3);
+  it.each(['human', 'robot'] as const)('%s mode has 4 projects', (mode) => {
+    expect(COPY[mode].projects).toHaveLength(4);
   });
 
   it.each(['human', 'robot'] as const)('%s projects with URLs have valid https URLs', (mode) => {
