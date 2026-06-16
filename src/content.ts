@@ -23,8 +23,8 @@ export const COPY = {
       },
       {
         num: '.04',
-        name: 'xdtox',
-        desc: 'cleans up XD-imported SVGs in Figma in one click',
+        name: 'XDtox',
+        desc: 'a one-click cleanup for XD imports in Figma',
         url: 'https://www.figma.com/community/plugin/1648196064868022957/xdtox',
       },
     ],
@@ -55,7 +55,7 @@ export const COPY = {
       },
       {
         num: 'P04',
-        name: 'xdtox',
+        name: 'XDtox',
         desc: '// type:plugin  status:DEPLOYED  platform:figma',
         url: 'https://www.figma.com/community/plugin/1648196064868022957/xdtox',
       },
