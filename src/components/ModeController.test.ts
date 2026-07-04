@@ -8,8 +8,10 @@ vi.mock('./PixelRain', () => ({
 }));
 vi.mock('./RobotAnimation', () => ({
   toBinary: vi.fn((s: string) => s),
-  decodeText: vi.fn((el: HTMLElement, val: string) => {
+  lockDimensions: vi.fn(() => () => {}),
+  decodeText: vi.fn((el: HTMLElement, val: string, _d: number, onDone?: () => void) => {
     el.textContent = val;
+    onDone?.();
     return 0;
   }),
   startNameCycle: vi.fn(() => 0),

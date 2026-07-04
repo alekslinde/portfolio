@@ -1,4 +1,4 @@
-import { decodeText, startNameCycle, toBinary } from './RobotAnimation';
+import { decodeText, lockDimensions, startNameCycle, toBinary } from './RobotAnimation';
 import { createRainCanvas, startPixelRain } from './PixelRain';
 import { triggerPixelRipple } from './PixelRipple';
 import type { Mode, ModeCopy } from '../content';
@@ -24,6 +24,10 @@ export function initModeController(
   let nameCycleTimer: ReturnType<typeof setInterval> | null = null;
   let pendingNameCycleTimeout: ReturnType<typeof setTimeout> | null = null;
   const activeDecodeAnimations: ReturnType<typeof setInterval>[] = [];
+  const pendingDecodeTimeouts: ReturnType<typeof setTimeout>[] = [];
+  // Cleanups that restore locked element boxes; run when a scramble ends or is
+  // interrupted so no element is left pinned to a stale size.
+  const pendingUnlockers = new Set<() => void>();
   let currentMode: Mode = 'human';
   let stopRain: (() => void) | null = null;
   let rainCanvas: HTMLCanvasElement | null = null;
@@ -46,6 +50,9 @@ export function initModeController(
       clearTimeout(pendingNameCycleTimeout);
       pendingNameCycleTimeout = null;
     }
+    // Release the box reserved for the binary name-cycle state.
+    els.nameEl.style.minWidth = '';
+    els.nameEl.style.minHeight = '';
     els.nameEl.textContent = realName;
   }
 
@@ -53,6 +60,11 @@ export function initModeController(
     stopNameCycle();
     activeDecodeAnimations.forEach(clearInterval);
     activeDecodeAnimations.length = 0;
+    pendingDecodeTimeouts.forEach(clearTimeout);
+    pendingDecodeTimeouts.length = 0;
+    // Release any element boxes still pinned by an in-flight scramble.
+    pendingUnlockers.forEach((unlock) => unlock());
+    pendingUnlockers.clear();
   }
 
   function setMode(mode: Mode) {
@@ -115,18 +127,28 @@ export function initModeController(
     const DECODE = 800;
     const RIPPLE_DELAY = 1200; // Wait for ripple effect to complete
 
+    // Lock every target to its pre-scramble box first, so neither the binary
+    // encode below nor the later decode noise can reflow the layout. Each lock
+    // is released when that element's decode animation lands its final text.
+    const locked = targets.map((t) => ({ ...t, unlock: lockDimensions(t.el) }));
+    locked.forEach(({ unlock }) => pendingUnlockers.add(unlock));
+
     // Immediately encode all content to binary (visible during ripple reveal)
-    targets.forEach(({ el, val }) => {
+    locked.forEach(({ el, val }) => {
       el.textContent = toBinary(val.slice(0, Math.min(val.length, 8))).slice(0, 20);
     });
 
     // Decode content after ripple settles
-    const shuffledTargets = shuffle(targets);
-    shuffledTargets.forEach(({ el, val }, i) => {
-      setTimeout(() => {
-        const timer = decodeText(el, val, DECODE, undefined);
+    const shuffledTargets = shuffle(locked);
+    shuffledTargets.forEach(({ el, val, unlock }, i) => {
+      const t = setTimeout(() => {
+        const timer = decodeText(el, val, DECODE, () => {
+          unlock();
+          pendingUnlockers.delete(unlock);
+        });
         activeDecodeAnimations.push(timer);
       }, RIPPLE_DELAY + i * STAGGER);
+      pendingDecodeTimeouts.push(t);
     });
 
     if (mode === 'robot') {
