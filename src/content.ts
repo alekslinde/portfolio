@@ -1,6 +1,6 @@
 export const COPY = {
   human: {
-    tagline: `UI designer who builds what he designs. Obsessed with the gap between Figma and the browser.`,
+    tagline: `I build useful things, and I make sure they don't look too bad.`,
     projectsLabel: "things I've made",
     projects: [
       {
@@ -32,7 +32,7 @@ export const COPY = {
     footerNote: '© Aleks Linde',
   },
   robot: {
-    tagline: `Designer and developer focused on interaction design, design systems, and bridging the gap between Figma and the browser.`,
+    tagline: `Builds functional tools with attention to usability and visual design. Priorities: works first, looks good second.`,
     projectsLabel: 'PROJECT_INDEX',
     projects: [
       {
