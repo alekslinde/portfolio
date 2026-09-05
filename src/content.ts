@@ -11,9 +11,9 @@ export const COPY = {
       },
       {
         num: '.02',
-        name: 'Just Checking, Mate',
-        desc: "Australia's no-nonsense scam detector",
-        url: 'https://justcheckingmate.com',
+        name: 'Veriguard',
+        desc: 'paste a dodgy link, text or email — get an instant scam verdict',
+        url: 'https://veriguard.app',
       },
       {
         num: '.03',
@@ -43,9 +43,9 @@ export const COPY = {
       },
       {
         num: 'P02',
-        name: 'justcheckingmate.com',
-        desc: '// type:tool  status:DEPLOYED  target:AU',
-        url: 'https://justcheckingmate.com',
+        name: 'veriguard.app',
+        desc: '// scam_detector  in:{link,text,email,phone}  out:verdict  scope:GLOBAL',
+        url: 'https://veriguard.app',
       },
       {
         num: 'P03',
