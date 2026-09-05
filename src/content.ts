@@ -12,7 +12,7 @@ export const COPY = {
       {
         num: '.02',
         name: 'Veriguard',
-        desc: 'a no-nonsense scam detector, global',
+        desc: 'paste a dodgy link, text or email — get an instant scam verdict',
         url: 'https://veriguard.app',
       },
       {
@@ -44,7 +44,7 @@ export const COPY = {
       {
         num: 'P02',
         name: 'veriguard.app',
-        desc: '// type:tool  status:DEPLOYED  scope:GLOBAL',
+        desc: '// scam_detector  in:{link,text,email,phone}  out:verdict  scope:GLOBAL',
         url: 'https://veriguard.app',
       },
       {
