@@ -11,8 +11,8 @@ export const COPY = {
       },
       {
         num: '.02',
-        name: 'VeriGuard',
-        desc: "Australia's no-nonsense scam detector",
+        name: 'Veriguard',
+        desc: 'a no-nonsense scam detector for AU, UK, US, NZ & Ireland',
         url: 'https://veriguard.app',
       },
       {
@@ -44,7 +44,7 @@ export const COPY = {
       {
         num: 'P02',
         name: 'veriguard.app',
-        desc: '// type:tool  status:DEPLOYED  target:AU',
+        desc: '// type:tool  status:DEPLOYED  regions:AU,UK,US,NZ,IE',
         url: 'https://veriguard.app',
       },
       {
