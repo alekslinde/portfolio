@@ -5,9 +5,9 @@ export const COPY = {
     projects: [
       {
         num: '.01',
-        name: 'Linde Toolbox',
+        name: 'Toolkist',
         desc: 'a toolbox for designers who like things that work',
-        url: 'https://lindetoolbox.com',
+        url: 'https://toolkist.app',
       },
       {
         num: '.02',
@@ -37,9 +37,9 @@ export const COPY = {
     projects: [
       {
         num: 'P01',
-        name: 'lindetoolbox.com',
+        name: 'toolkist.app',
         desc: '// type:tooling  status:DEPLOYED  input:designers',
-        url: 'https://lindetoolbox.com',
+        url: 'https://toolkist.app',
       },
       {
         num: 'P02',
